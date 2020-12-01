@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 
 // todo: add in a <List /> component function
 
-const initialToDo = [ ]
+const initialToDo = [];
 
-let id = 3
-
-
-
+let id = 0;
 
 const ToDo = () => {
     const [todos, setToDo] = useState(initialToDo);
@@ -17,14 +14,21 @@ const ToDo = () => {
         return (
             todos.map((todo) => {
             return (
-                <div className='todo-list flex px-2 py-1 w-1/2 justify-between'>
+                <div
+                    id={`todo-${todo.id}-${todo.name}`}
+                    className='todo-list flex px-2 py-1 w-1/2 justify-between'>
                     <input
                         className="px-3"
                         type='checkbox'
                         name={todo.name}
                         id={`id-${todo.id}`}
                         value={todo.name}
-                    ><p className='flex mr-auto pl-2'>{todo.name}</p></input>
+                        onChange={e => {
+                            let div = document.getElementById(`todo-${todo.id}-${todo.name}`)
+                            div.classList.contains('done') ? div.classList.remove('done') : div.classList.add('done')
+                        }}
+                    />
+                        <p className='flex mr-auto pl-2'>{todo.name}</p>
                     <button 
                         className='rounded-sm border-2 px-2'
                         onClick={(e)=>{

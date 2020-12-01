@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import ToDo from './ToDo';
 import './App.css';
 import './tailwind.min.css';
